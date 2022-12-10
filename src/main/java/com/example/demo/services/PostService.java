@@ -46,7 +46,7 @@ public class PostService {
     }
 
     public List<Post> getAllPosts() {
-        return postRepository.finAllByOrderByCreatedDateDesc();
+        return postRepository.findAllByOrderByCreatedDateDesc();
     }
 
     public Post getPostById(Long postId, Principal principal) {
