@@ -60,7 +60,7 @@ public class ImageUploadService {
 
     }
 
-    public ImageModel uploadImageToPost(MultipartFile multipartFile, Principal principal, Long postId) throws IOException {
+    public ImageModel uploadImageToPost(MultipartFile file, Principal principal, Long postId) throws IOException {
         User user = getUserByPrincipal(principal);
         Post post = user.getPosts()
                 .stream()
@@ -69,12 +69,12 @@ public class ImageUploadService {
 
         ImageModel imageModel = new ImageModel();
         imageModel.setPostId(post.getId());
-        imageModel.setImageBytes(compressBytes(multipartFile.getBytes()));
-        imageModel.setName(multipartFile.getOriginalFilename());
+        imageModel.setImageBytes(file.getBytes());
+        imageModel.setImageBytes(compressBytes(file.getBytes()));
+        imageModel.setName(file.getOriginalFilename());
         LOG.info("Uploading image to Post {}", post.getId());
 
         return imageRepository.save(imageModel);
-
     }
 
     public ImageModel getImageToUser(Principal principal){
