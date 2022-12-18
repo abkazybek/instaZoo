@@ -1,1 +1,0 @@
-# instaZoo project (Spring + Angular)
